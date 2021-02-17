@@ -21,12 +21,20 @@
     <%= form.text_area :description %>
   </div>
 
+
+  <h4> Add Photos </h4>
+  <%= form.fields_for :attachments do |attachment| %>
+    <%= attachment.file_field :photo, multiple: true %>
+  <% end %>
+
+  <h4> Edit Photos </h4>
   <% @gallery.attachments.each do |attachment| %>
-    <div>
-      <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>
-      <%= form.hidden_field :attachment_ids, :multiple => true, :value => attachment.id %>
-      <i class="fas fa-trash"></i>
-    </div>
+      <div id="attachment-<%= attachment.id %>">
+        <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>
+        <%= form.hidden_field :attachment_ids, name: 'gallery[existing_attachments][][id]', :multiple => true, :value => attachment.id, id: "attachment-id-#{attachment.id}" %>
+        <%= form.text_field :attachment_caption, name: 'gallery[existing_attachments][][caption]', id: "caption-#{attachment.id}", multiple: true, data: {attachment_id: attachment.id }, :value => attachment.caption, placeholder: "Enter a caption here...", id: "attachment-caption-#{attachment.id}" %>
+        <i class="fas fa-trash"></i>
+      </div>
     
   <% end %>
 

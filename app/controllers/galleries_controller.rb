@@ -1,12 +1,6 @@
 class GalleriesController < InheritedResources::Base
 
-  # before_filter :set_attachment
-  # def set_attachment
-  #   @attachment = Attachment.new
-  # end
-
   def new
-    p params
     @attachment = Attachment.new
     @gallery = Gallery.new
   end
@@ -16,8 +10,11 @@ class GalleriesController < InheritedResources::Base
     @gallery = Gallery.find(params[:id])
   end
 
+  def update
+    p gallery_edit_params
+  end
+
   def create
-    # p params[:gallery][:attachments]
     attachment_params = params[:gallery].delete(:attachments)
     gallery = Gallery.create!(gallery_params)
 
@@ -34,8 +31,12 @@ class GalleriesController < InheritedResources::Base
 
   private
 
-    def gallery_params
-      params.require(:gallery).permit(:description, :title, attachments: [photo:[]])
-    end
+  def gallery_params
+    params.require(:gallery).permit(:description, :title, attachments: [photo:[]])      
+  end
+
+  def gallery_edit_params
+    params.require(:gallery).permit(:description, :title, existing_attachments: [:id, :caption], attachments: [photo:[]])
+  end
 
 end
