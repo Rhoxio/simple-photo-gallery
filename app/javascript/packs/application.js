@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import jQuery from "jquery"
+import "@fortawesome/fontawesome-free/js/all";
 
 Rails.start()
 Turbolinks.start()

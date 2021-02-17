@@ -1,0 +1,36 @@
+<%= form_with(model: @gallery) do |form| %>
+  <% if @gallery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
+
+      <ul>
+        <% @gallery.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>  
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <% @gallery.attachments.each do |attachment| %>
+    <div>
+      <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>
+      <%= form.hidden_field :attachment_ids, :multiple => true, :value => attachment.id %>
+      <i class="fas fa-trash"></i>
+    </div>
+    
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
