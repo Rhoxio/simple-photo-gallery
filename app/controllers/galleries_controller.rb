@@ -10,14 +10,16 @@ class GalleriesController < InheritedResources::Base
   def edit
     @attachment = Attachment.new
     @gallery = Gallery.find(params[:id])
-    if !validate_user_gallery_ownership(@gallery)
+    if !user_owns_gallery?(@gallery)
       redirect_to gallery_path, notice: "You cannot edit this gallery. Sign in and try again!" and return
     end
   end
 
   def update
     gallery = Gallery.find(params[:id])
-    validate_user_gallery_ownership(gallery)
+    if !user_owns_gallery?(gallery)
+      redirect_to gallery_path, notice: "You cannot update this gallery. Sign in and try again!" and return
+    end
 
     params_surrogate = gallery_edit_params.dup
 
@@ -54,7 +56,7 @@ class GalleriesController < InheritedResources::Base
 
   private
 
-  def validate_user_gallery_ownership(gallery)
+  def user_owns_gallery?(gallery)
     return true if current_user == gallery.user
     return false
   end
