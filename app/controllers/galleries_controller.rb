@@ -43,10 +43,8 @@ class GalleriesController < InheritedResources::Base
     attachment_params = params[:gallery].delete(:attachments)
     gallery = Gallery.create!(gallery_params)
 
-    attachments = []
-    attachment_params[:photo].each do |photo|
-      a = Attachment.create!(photo: photo)
-      attachments.push(a)
+    attachments = attachment_params[:photo].map do |photo|
+      Attachment.create!(photo: photo)
     end
 
     gallery.attachments << attachments
@@ -62,7 +60,7 @@ class GalleriesController < InheritedResources::Base
   end
 
   def gallery_params
-    params.require(:gallery).permit(:description, :title, attachments: [photo:[]])      
+    params.require(:gallery).permit(:user_id, :description, :title, attachments: [photo:[]])      
   end
 
   def gallery_edit_params
