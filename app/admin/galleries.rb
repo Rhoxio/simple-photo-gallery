@@ -4,7 +4,10 @@ ActiveAdmin.register Gallery do
     selectable_column
     id_column
     column :title
-    column :description
+    li do
+      label :description, class: 'trix-editor-label'
+      f.rich_text_area :description
+    end
     column :created_at
     column :updated_at
     column "Attached Photo Count" do |gallery|

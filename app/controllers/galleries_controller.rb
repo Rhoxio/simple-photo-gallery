@@ -32,13 +32,15 @@ class GalleriesController < InheritedResources::Base
       attachment.save!
     end
 
-    fresh_attachments = new_attachments[:photo].map do |photo|
-      Attachment.create!(photo: photo)
+    if !!new_attachments
+      fresh_attachments = new_attachments[:photo].map do |photo|
+        Attachment.create!(photo: photo)
+      end
+      gallery.attachments << fresh_attachments
     end
-
-    gallery.attachments << fresh_attachments
+    
     gallery.update!(params_surrogate)
-
+    redirect_to(gallery)
   end
 
   def create
