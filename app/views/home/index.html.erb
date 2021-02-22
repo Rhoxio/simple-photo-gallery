@@ -1,43 +1,67 @@
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-
-<h2 class='main-title-name'>In Memory of Beverly Beavers</h5>
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>  
-
-  <div class="carousel-inner">
-
-    <% if Attachment.count >= 3 %>
-      <% Attachment.last(3).each_with_index do |att, index| %>
-        
-          <div class="carousel-item <% if index == 0 %>active<% end %>">
-            <%= image_tag att.photo, class: 'carousel-img-front' %>
-            <div class="carousel-caption d-none d-md-block">
-              <% if att.caption.present? %><p><%= att.caption %></p><% end %>
-            </div>          
-          </div>     
-        
-      <% end %>
-    <% end %>
+<div class="featured-container">
+  <div class='inset-container'>
+    <div class='featured-photo-container'>
+      <%= image_tag "beverly-bw.png" %>    
+    </div>
+    <div class='featured-copy-container'>
+      <h3>In Loving Memory of</h3>
+      <h2>Beverly Beavers</h2>
+      <h6>July 14, 1928 - February 10, 2021</h6>
+      <div class='action-links-container'>
+        <p>Coming Very Soon!</p>
+        <a href="<%= new_gallery_path %>"><button class='lilac-button contribute'>Contribute a Memory</button></a></br>
+        <p style='margin-top: 3px'>Coming Very Soon!</p>
+        <button class='lilac-button browse'>Browse Galleries</button>
+      </div>
+    </div>
 
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
+
+<button class='lilac-button affixed-bottom-center'>
+  <p>More Below</p>
+  <i class="fas fa-arrow-alt-circle-down"></i>
+</button>
+
+<div class='section-separator'>
+  <h1>Slideshow</h1>
+</div>
+
+<% if Attachment.count >= 3 %>
+  <div id="carouselControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+      <ol class="carousel-indicators">
+        <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselIndicators" data-slide-to="2"></li>
+      </ol> 
+
+      <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>    
+
+      <% if Attachment.count >= 3 %>
+        <% Attachment.last(3).each_with_index do |att, index| %>
+          
+            <div class="carousel-item <% if index == 0 %>active<% end %>">
+              <%= image_tag att.photo, class: 'carousel-img-front' %>
+              <div class="carousel-caption d-none d-md-block">
+                <% if att.caption.present? %><p><%= att.caption %></p><% end %>
+              </div>          
+            </div>     
+          
+        <% end %>
+      <% end %>
+
+    </div>
+
+  </div>
+<% end %>
 
 <%= link_to("Galleries", galleries_path) %>

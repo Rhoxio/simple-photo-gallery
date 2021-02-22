@@ -19,3 +19,22 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+$(document).ready(()=>{
+  
+  $(".affixed-bottom-center").on("click", (e)=>{
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $(".carousel-control-prev").offset().top
+    }, 500);
+  })
+
+  $(window).scroll((e)=>{
+    let fromTop = $(window).scrollTop()
+    console.log(fromTop)
+    if(fromTop > 200){
+      $(".affixed-bottom-center").hide()
+    } else if(fromTop < 100){
+      $(".affixed-bottom-center").show()
+    }
+  })
+})
