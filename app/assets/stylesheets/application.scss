@@ -10,6 +10,231 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap
  *= require_tree .
  *= require_self
  */
+@import "bootstrap/scss/bootstrap";
+@import "./actiontext.scss";
+
+$lilac: #C8A2C8;
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+body{
+  background-color: #f1e8e621;
+}
+
+.lilac-button{
+  background-color: white;
+  background-image: none;
+  border-radius: 11px;
+  box-shadow: 1px 2px 1px 0px;
+  color: $lilac;
+  border-color: $lilac;
+  border-width: 2px;
+  text-shadow: none;   
+
+  &:hover{
+    background-color: #00000012 !important;
+    background-image: none !important;
+    border-radius: 11px;
+    box-shadow: 1px 2px 1px 0px;
+    border-width: 2px;
+    text-shadow: none;      
+  } 
+}
+
+.action-links-container{
+  font-size: 1.5rem;
+  position: relative;
+  top: 60px;
+  font-family: 'Caveat', cursive;
+
+  a{
+    &:hover{
+      background-color: transparent;
+    }
+  }
+
+  p{
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-style: italic;
+  }
+
+  .browse{ 
+    // margin-top: 16px;   
+  }
+}
+
+.section-separator{
+  display: inline-block;
+  width: 100%;
+  background-color: #C8A2C8;
+  height: 50px;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  border-radius: 0px;
+  box-shadow: -3px -3px 6px 2px black;
+
+  h1{
+    font-size: 2.5rem;
+    color: white;    
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(5px);
+  }
+}
+@-webkit-keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(5px);
+  }
+}
+
+.affixed-bottom-center {
+    position: fixed;
+    width: 10%;
+    bottom: 0px;
+    right: 45%; 
+    z-index: 2;
+
+    .fa-arrow-alt-circle-down{
+      animation: bounce .5s infinite alternate;
+      -webkit-animation: bounce .5s infinite alternate;      
+    }
+
+    &:hover{
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    p{
+      margin-bottom: 0;
+    }
+}
+
+.featured-container{
+  height: 1000px;
+  padding-top: 100px;
+  // background-color: grey;
+
+  .inset-container{
+    width: 80%;
+    margin-left: 10%;
+    // padding-top: 60px;
+
+    .featured-photo-container{
+      display: inline-block;      
+      @media screen and (max-width: $tablet-width) {
+        width: 100%;
+        img{
+          width: 100%;
+        }        
+      }
+
+      @media screen and (min-width: $desktop-width) {
+        width: 50%;
+        img{
+          width: 70%;
+        }
+      }      
+    }
+
+    .featured-copy-container{
+      font-size: 70px;
+      font-family: 'Dancing Script', cursive;
+      display: inline-block;
+      text-align: center;
+      position: relative;
+      top: 60px;      
+
+      h2{
+        color: $lilac;
+        font-size: 5.0rem;
+      }
+
+      h3{
+        font-size: 3.75rem;
+      }
+
+      h6{
+        font-size: 1.2rem;
+        position: relative;
+        top: 20px;        
+      }
+    }
+  }
+}
+
+.main-title-name{
+  font-family: 'Courgette', cursive;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  padding-top: 10px;
+}
+
+.carousel-img-front{
+  max-height: 1000px;
+}
+
+.carousel-item{
+  text-align: center;
+}
+
+.carousel-inner{
+  background-color: black;
+}
+
+.carousel-caption{
+  background-color: #00000052;
+}
+
+.navbar-main{
+  z-index: 1;
+
+  a{
+    text-decoration: none;
+    color: black;
+    &:hover{
+      text-decoration: none;
+      color: $lilac;
+      background-color: transparent;
+    }
+  }
+}
+
+.navbar-links{
+  float: right;
+  padding-top: 15px;
+  text-align: right;
+
+  a{
+    text-decoration: underline;
+    color: $lilac;
+  }
+
+  .user-icon{
+    font-size: 24px;
+  }
+}
+
+.gallery-link{
+  color: white;
+  &:visited{
+    color: white;
+  }
+}
