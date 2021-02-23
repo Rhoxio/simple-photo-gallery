@@ -26,6 +26,12 @@ body{
   background-color: #f1e8e621;
 }
 
+.home-link{
+  font-size: 24px;
+  margin-left: 5%;
+  color: $lilac !important;
+}
+
 .lilac-button{
   background-color: white;
   background-image: none;
@@ -238,3 +244,105 @@ body{
     color: white;
   }
 }
+
+
+
+form{
+  width: 50%;
+  margin-left: 25%;
+
+  .separator{
+    width: 90%;
+    height: 1px;
+    background-color: black;
+    margin: 30px 5%;
+  }
+
+  #gallery_attachments_photo{
+    margin-bottom: 15px;
+  }
+
+  .attachment-edit-container{
+    display: inline-block;
+    width: 100%;
+    .attachment-edit{
+      text-align: center;
+      display: inline-block;
+      width: 33%;
+      margin-bottom: 40px;
+    }  
+    .attachment-edit-photo{
+      width: 90%;
+      margin-bottom: 5px;
+    }  
+
+    .attachment-edit-caption{
+      float: left;
+      margin-left: 5%;
+      width: 80%;
+    }  
+
+    .fa-trash{
+      float: left;
+      font-size: 1.3rem;
+      margin-top: 8px;
+      margin-left: 2.3%;
+      color: #797979;
+
+      &:hover{
+        color: black;
+        font-size: 1.5rem;
+        transition: .3s;
+        cursor: pointer;
+      }
+    }  
+  }
+
+
+  .form-info{
+    margin-bottom: 3px;
+  }  
+
+  .field{
+    label{
+      width: 100%;
+    }
+  }
+  input{
+    border-color: $lilac;
+  }
+
+  .trix-content{
+    resize: vertical;
+    overflow: auto;
+  }
+
+  .pad-after{
+    height: 30px;
+  }
+}
+
+.warn{
+  color: #068f00;
+}
+
+trix-toolbar .trix-button-group--file-tools {
+  display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
