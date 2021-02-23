@@ -26,7 +26,9 @@
   <% end %>    
   <div class="navbar-main float-right col-sm-12 container">
     <div class="row">
+
       <div class='navbar-links col-lg-12 float-right align-items-center'>
+        <a class="float-left home-link" href='/'>Home</a>
         <% if user_signed_in? %>
           <i class="user-icon fas fa-user"></i> <strong><%= current_user.display_name %></strong>
           <%= link_to 'Edit Profile', edit_user_registration_path, :class => 'navbar-link' %> |

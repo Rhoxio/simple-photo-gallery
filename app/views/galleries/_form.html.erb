@@ -1,4 +1,8 @@
 <%= form_with(model: @gallery) do |form| %>
+  <%= link_to 'Back', galleries_path %>
+
+  <h1>New Gallery</h1>
+
   <% if @gallery.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
@@ -19,15 +23,23 @@
   </div>  
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :message %>
     <%= form.rich_text_area :description %>
   </div>
 
+  <div class='separator'></div>
+
+  <h4>Add Photos</h4>
+  <small class='col-sm-12 row form-info warn'><i>**You will need to create a Gallery before adding captions to photos.**</i></small>   
+  <small class='col-sm-12 row form-info'><i>You can add multiple photos at the same time by holding CTRL (or Command on Mac) and clicking on multiple files in the file selection window.</i></small>
   <%= form.fields_for :attachments do |attachment| %>
     <%= attachment.file_field :photo, multiple: true %>
   <% end %>
 
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
+  <%= link_to 'Back', galleries_path %>  
 <% end %>

@@ -1,4 +1,9 @@
 <%= form_with(model: @gallery) do |form| %>
+  <%= link_to 'View Gallery', @gallery %> |
+  <%= link_to 'Back', galleries_path %>
+
+  <h1>Editing Gallery</h1>
+
   <% if @gallery.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(gallery.errors.count, "error") %> prohibited this gallery from being saved:</h2>
@@ -17,28 +22,41 @@
   </div>  
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :message %>
     <%= form.rich_text_area :description %>
   </div>
 
+  <div class='separator'></div>
 
   <h4> Add Photos </h4>
+  <small class='col-sm-12 row form-info'><i>You can add multiple photos at the same time by holding CTRL (or Command on Mac) and clicking on multiple files.</i></small>  
   <%= form.fields_for :attachments do |attachment| %>
     <%= attachment.file_field :photo, multiple: true %>
   <% end %>
 
-  <h4> Edit Photos </h4>
-  <% @gallery.attachments.each do |attachment| %>
-      <div id="attachment-<%= attachment.id %>">
-        <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>
+  <div class='separator'></div>
+
+  <h4> Edit Existing Photos </h4>
+  <div class="attachment-edit-container">
+    <% @gallery.attachments.each do |attachment| %>
+      <div class='attachment-edit' id="attachment-<%= attachment.id %>">
+        <%= image_tag(attachment.photo, class: 'attachment-edit-photo') if attachment.photo.attached? %>
         <%= form.hidden_field :attachment_ids, name: 'gallery[existing_attachments][][id]', :multiple => true, :value => attachment.id, id: "attachment-id-#{attachment.id}" %>
-        <%= form.text_field :attachment_caption, name: 'gallery[existing_attachments][][caption]', id: "caption-#{attachment.id}", multiple: true, data: {attachment_id: attachment.id }, :value => attachment.caption, placeholder: "Enter a caption here...", id: "attachment-caption-#{attachment.id}" %>
-        <i class="fas fa-trash"></i>
+        <%= form.text_field :attachment_caption, class: 'attachment-edit-caption', name: 'gallery[existing_attachments][][caption]', id: "caption-#{attachment.id}", multiple: true, data: {attachment_id: attachment.id }, :value => attachment.caption, placeholder: "Enter a caption here...", id: "attachment-caption-#{attachment.id}" %>
+        <i class="fas fa-trash" id='delete-attachment-<%= attachment.id %>'></i>
       </div>
-    
-  <% end %>
+      
+    <% end %>    
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
-  </div>
+  </div> 
+
+  <div class='pad-after'></div>    
+
+  <%= link_to 'View Gallery', @gallery %> |
+  <%= link_to 'Back', galleries_path %>
+  
 <% end %>
