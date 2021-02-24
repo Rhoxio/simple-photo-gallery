@@ -11,7 +11,7 @@
         <p>Coming Very Soon!</p>
         <a href="<%= new_gallery_path %>"><button class='lilac-button contribute'>Contribute a Memory</button></a></br>
         <p style='margin-top: 3px'>Coming Very Soon!</p>
-        <button class='lilac-button browse'>Browse Galleries</button>
+        <a href="<%= galleries_path %>"><button class='lilac-button browse'>Browse Galleries</button></a>
       </div>
     </div>
 
@@ -27,41 +27,37 @@
   <h1>Slideshow</h1>
 </div>
 
-<% if Attachment.count >= 3 %>
-  <div id="carouselControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
+<div id="carouselControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
 
-      <ol class="carousel-indicators">
-        <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselIndicators" data-slide-to="2"></li>
-      </ol> 
+    <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>    
 
-      <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>    
-
-      <% if Attachment.count >= 3 %>
-        <% Attachment.last(3).each_with_index do |att, index| %>
-          
-            <div class="carousel-item <% if index == 0 %>active<% end %>">
-              <%= image_tag att.photo, class: 'carousel-img-front' %>
-              <div class="carousel-caption d-none d-md-block">
-                <% if att.caption.present? %><p><%= att.caption %></p><% end %>
-              </div>          
-            </div>     
-          
-        <% end %>
-      <% end %>
-
-    </div>
+    <% Attachment.all.each_with_index do |att, index| %>
+      <div class="carousel-item <% if index == 0 %>active<% end %>">
+        <%= image_tag att.photo, class: 'carousel-img-front' %>
+        <div class="carousel-caption d-none d-md-block">
+          <% if att.caption.present? %><p><%= att.caption %></p><% end %>
+        </div>          
+      </div>     
+    <% end %>
 
   </div>
-<% end %>
 
-<%= link_to("Galleries", galleries_path, class: 'gallery-link') %>
+</div>
+
+<div style="margin-bottom: 15px; box-shadow: 0px 2px 6px 2px black;" class='section-separator'>
+  <h1>Galleries</h1>
+</div>
+
+<div class='gallery-container col-sm-12'>
+  <% Gallery.all.each do |gallery| %>
+    <%= render 'galleries/gallery_row', gallery: gallery %>
+  <% end %>  
+</div>

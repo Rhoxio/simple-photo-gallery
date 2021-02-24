@@ -30,7 +30,6 @@ $(document).ready(()=>{
 
   $(window).scroll((e)=>{
     let fromTop = $(window).scrollTop()
-    console.log(fromTop)
     if(fromTop > 200){
       $(".affixed-bottom-center").hide()
     } else if(fromTop < 100){
