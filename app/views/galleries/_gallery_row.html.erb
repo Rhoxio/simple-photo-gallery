@@ -1,3 +1,27 @@
-<div class='gallery-row'>
-  
+<div class='gallery-row col-sm-12'>
+  <div class='row'>
+
+    <div class='col-sm-2 photo-container'>
+      <% if gallery.has_photos? %>
+        <%= image_tag gallery.first_photo, class: 'title-photo' %>
+      <% else %>
+        <%= image_tag "beverly-bw.png", class: 'title-photo' %>
+      <% end %>    
+    </div>
+
+    <div class="col-sm-10">
+      <h4 class='title'><%= gallery.title %></h4>
+      <p class='contributor'>
+        Contributed by: <%= gallery.user.display_name %>
+        <%if gallery.user === current_user %>
+          <span><%= link_to "Edit", edit_gallery_path(gallery) %></span>
+        <% end %>
+      </p>
+      <div class='desc-wrapper'>
+        <div class="desc-overlay"></div>
+        <%= gallery.description %> 
+       <a href="<%= gallery_path(gallery)%>" class='gallery-link'><button class='lilac-button'>See the Full Gallery</button></a> 
+      </div>
+    </div>  
+  </div>
 </div>

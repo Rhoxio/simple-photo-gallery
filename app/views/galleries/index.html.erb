@@ -1,34 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Galleries</h1>
+<div class='gallery-container col-sm-12'>
+  <h1>Galleries</h1>
+  <% @galleries.each do |gallery| %>
+    <%= render 'gallery_row', gallery: gallery %>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= link_to 'New Gallery', new_gallery_path %>  
+</div>
 
-  <tbody>
-    <% @galleries.each do |gallery| %>
-      <tr>
-        <td><%= gallery.title %></td>
-        <td><%= gallery.description %></td>
-        <td><%= link_to 'Show', gallery %></td>
-        <td>
-          <% if current_user %>
-            <% if current_user.galleries.include?(gallery)%>
-              <%= link_to 'Edit', edit_gallery_path(gallery) %>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Gallery', new_gallery_path %>
