@@ -552,16 +552,88 @@ trix-toolbar .trix-button-group--file-tools {
 .gallery-show{
   text-align: center;
 
+  a{
+    color: $lilac;
+    font-size: 1.0rem;
+  }
+
   .gallery-title{
     font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
   }
 
   .contributor{
     font-family: 'Caveat', cursive;
   }
 
+  .gallery-photos-container{
+     width: 90%;
+     margin-left: 5%;
+
+      .polaroid{
+
+        @media screen and (max-width: $tablet-width) {
+          width: 100%; 
+        }      
+
+        @media screen and (min-width: $tablet-width) {
+          width: 100%;         
+        } 
+        
+        @media screen and (min-width: $desktop-width) {
+          width: 33%;
+        }
+
+        
+        border: 1px solid black;
+        display: inline-block;
+        min-height: 300px;
+        vertical-align: top;
+        padding: 1%;
+        padding-top: 35px;
+        background-color: white;
+
+        -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+        -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+        -webkit-transition: all .20s linear;
+        -moz-transition: all .20s linear;
+        transition: all .20s linear;
+        z-index: 0;
+        position: relative;  
+
+        margin-bottom: 30px;
+
+        &:hover {
+          -webkit-transform: scale(1.2);
+          -moz-transform: scale(1.2);
+          transform: scale(1.2);
+          z-index: 10;
+          -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .7);
+          -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, .7);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, .7);
+        }      
+
+        img{
+          max-width: 90%;
+        }
+
+        p{
+          font-family: 'Caveat', cursive;
+          padding: 20px;
+          margin: 0;
+          font-size: 1.5rem;
+        }
+      }     
+  }
+
+
+
   .description-container{
     text-align: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 70px;    
     .trix-content{
       font-family: 'Karma', serif;
       line-height: 20px;

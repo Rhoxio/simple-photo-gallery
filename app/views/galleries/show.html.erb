@@ -1,6 +1,9 @@
 <div class='gallery-show'>
   <h4 class='gallery-title'><%= @gallery.title %></h4>
   <h6 class='contributor'>Contributed by: <%= @gallery.user.display_name %></h6>
+  <%if @gallery.user === current_user %>
+    <span><%= link_to "Edit", edit_gallery_path(@gallery) %></span>
+  <% end %>
   <div class='description-container'>
     <p>
       <%= @gallery.description %>
@@ -8,14 +11,18 @@
   </div>
 
 
-  <div>
+  <div class='gallery-photos-container'>
     <% @gallery.attachments.each do |attachment| %>
-      <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>  
+      <div class='polaroid'>
+        <%= image_tag(attachment.photo) if attachment.photo.attached? %>
+        <p><%= attachment.caption %></p>
+      </div>
+  
     <% end %>
-  </div>  
+  </div> 
+
+   <%= link_to 'Back to Galleries', galleries_path %>
+   
 </div>
 
 
-
-<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
-<%= link_to 'Back', galleries_path %>
