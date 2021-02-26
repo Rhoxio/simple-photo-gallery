@@ -17,10 +17,6 @@ class AttachmentsController < InheritedResources::Base
 
   private
 
-    def validate_ownership
-      # p params
-    end
-
     def attachment_params
       params.require(:attachment).permit(:caption, :photo)
     end

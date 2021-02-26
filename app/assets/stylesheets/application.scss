@@ -358,8 +358,34 @@ body{
 
 
 form{
-  width: 50%;
-  margin-left: 25%;
+
+    @media screen and (max-width: $tablet-width) {
+      width: 90%;
+      margin-left: 10%;   
+    }      
+
+    @media screen and (min-width: $tablet-width) {
+      width: 90%;
+      margin-left: 10%;         
+    } 
+    
+    @media screen and (min-width: $desktop-width) {
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    .field{
+      width: 100%;
+    }
+
+    trix-editor{
+      width: 95%; 
+    }
+
+    trix-toolbar{
+      width: 95%;
+    }
+
 
   .separator{
     width: 90%;
