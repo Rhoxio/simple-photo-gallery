@@ -30,10 +30,15 @@ $(document).ready(()=>{
 
   $(window).scroll((e)=>{
     let fromTop = $(window).scrollTop()
-    if(fromTop > 200){
+    if(screen.width < 1024){
       $(".affixed-bottom-center").hide()
-    } else if(fromTop < 100){
-      $(".affixed-bottom-center").show()
+    } else{
+      if(fromTop > 200){
+        $(".affixed-bottom-center").hide()
+      } else if(fromTop < 100){
+        $(".affixed-bottom-center").show()
+      }      
     }
+
   })
 })

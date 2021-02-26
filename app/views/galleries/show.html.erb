@@ -1,20 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class='gallery-show'>
+  <h4 class='gallery-title'><%= @gallery.title %></h4>
+  <h6 class='contributor'>Contributed by: <%= @gallery.user.display_name %></h6>
+  <div class='description-container'>
+    <p>
+      <%= @gallery.description %>
+    </p>    
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @gallery.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @gallery.description %>
-</p>
-
-<div>
-  <% @gallery.attachments.each do |attachment| %>
-    <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>  
-  <% end %>
+  <div>
+    <% @gallery.attachments.each do |attachment| %>
+      <%= image_tag(attachment.photo, width: 200) if attachment.photo.attached? %>  
+    <% end %>
+  </div>  
 </div>
+
 
 
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |

@@ -28,17 +28,27 @@
   <div class="navbar-main float-right col-sm-12 container">
     <div class="row">
 
+      <div class="collapse main-nav" id="navbarToggleMobile">
+        <div class="navbar-links" style='text-align: center;'>
+            <% if user_signed_in? %>
+              <strong>Signed In As: <%= current_user.display_name %></strong>
+              <a href="<%= edit_user_registration_path %>"><button class='lilac-button'>Edit Profile</button></a>
+              <a class="navbar-link" rel="nofollow" data-method="delete" href="/users/sign_out"><button class='lilac-button'>Sign Out</button></a>
+            <% else %>
+              <strong>Log in or Create an Account Below</strong>
+              <a href="<%= new_user_registration_path %>"><button class='lilac-button'>Sign Up</button></a>
+              <a href="<%= new_user_session_path %>"><button class='lilac-button'>Log In</button></a>
+            <% end %>          
+        </div>
+            
+      </div>      
+
       <div class='navbar-links col-lg-12 float-right align-items-center'>
         <div class='icon-wrapper'><a class="home-link" href='/'>BB</a></div>
-        <div class='user-links'>
-          <% if user_signed_in? %>
-            <i class="user-icon fas fa-user"></i> <strong><%= current_user.display_name %></strong>
-            <%= link_to 'Edit Profile', edit_user_registration_path, :class => 'navbar-link' %> |
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-          <% else %>
-            <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> |
-            <%= link_to "Log In", new_user_session_path, :class => 'navbar-link'  %>
-          <% end %>            
+        <div class='user-links navbar-light'>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleMobile" aria-controls="navbarToggleMobile" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>            
         </div>
     
       </div>      
@@ -51,7 +61,7 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+ 
 
 
   </body>

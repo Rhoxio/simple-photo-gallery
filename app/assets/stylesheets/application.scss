@@ -26,6 +26,42 @@ body{
   background-color: #f1e8e621;
 }
 
+.navbar-toggler{
+    background-image: none !important;
+
+    // @media screen and (max-width: $tablet-width) {
+    //   visibility: visible;       
+    // }      
+
+    // @media screen and (min-width: $tablet-width) {
+    //   visibility: visible;
+    // } 
+    
+    // @media screen and (min-width: $desktop-width) {
+    //   visibility: hidden;
+    // }
+}
+
+.main-nav{
+  border-bottom: 1px solid #80808047;
+  width: 100%;
+  text-align: center;
+}
+
+// .desktop-links{
+//     @media screen and (max-width: $tablet-width) {
+//       visibility: hidden;       
+//     }      
+
+//     @media screen and (min-width: $tablet-width) {
+//       visibility: hidden;
+//     } 
+    
+//     @media screen and (min-width: $desktop-width) {
+//       visibility: visible;
+//     }  
+// }
+
 .lilac-button{
   background-color: white;
   background-image: none;
@@ -102,12 +138,33 @@ body{
   }
 }
 
+#navbarToggleMobile{
+  border-bottom: 1px solid #80808047;
+
+  strong{
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    width: 100%;
+    font-size: 1.4rem;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
 .affixed-bottom-center {
     position: fixed;
     width: 10%;
     bottom: 0px;
     right: 45%; 
     z-index: 2;
+
+    @media screen and (min-width: $tablet-width) {
+      display: none;
+    }  
+
+    @media screen and (max-width: $tablet-width) {
+      display: none;
+    }     
 
     .fa-arrow-alt-circle-down{
       animation: bounce .5s infinite alternate;
@@ -127,8 +184,9 @@ body{
 }
 
 .featured-container{
-  height: 1000px;
+  // height: 1000px;
   padding-top: 100px;
+  padding-bottom: 120px;
   // background-color: grey;
 
   .inset-container{
@@ -137,8 +195,16 @@ body{
     // padding-top: 60px;
 
     .featured-photo-container{
-      display: inline-block;      
+      display: inline-block; 
+
       @media screen and (max-width: $tablet-width) {
+        width: 100%;
+        img{
+          width: 100%;
+        }        
+      }      
+
+      @media screen and (min-width: $tablet-width) {
         width: 100%;
         img{
           width: 100%;
@@ -147,6 +213,7 @@ body{
 
       @media screen and (min-width: $desktop-width) {
         width: 50%;
+        vertical-align: top;
         img{
           width: 70%;
         }
@@ -158,8 +225,20 @@ body{
       font-family: 'Dancing Script', cursive;
       display: inline-block;
       text-align: center;
-      position: relative;
-      top: 60px;      
+      // position: relative;
+      // top: 60px; 
+      width: 49%;  
+      @media screen and (min-width: $tablet-width) {
+        width: 100%;
+      }  
+
+      @media screen and (max-width: $tablet-width) {
+        width: 100%;
+      }  
+
+      @media screen and (min-width: $desktop-width) {
+        width: 49%;
+      }
 
       h2{
         color: $lilac;
@@ -219,9 +298,9 @@ body{
 }
 
 .navbar-links{
-  float: right;
+  // float: right;
   padding-top: 15px;
-  text-align: right;
+  // text-align: right;
   margin-bottom: 40px;
 
   .user-links{
@@ -253,6 +332,15 @@ body{
     margin-left: 45%;
     text-align: center;
     padding-top: 10px;
+
+    @media screen and (max-width: $tablet-width) {
+      margin-left: 40%;
+    }      
+
+    @media screen and (min-width: $tablet-width) {
+      visibility: visible;
+    } 
+        
   }
 
   .user-icon{
@@ -396,7 +484,7 @@ trix-toolbar .trix-button-group--file-tools {
       position:absolute;
       min-height: 150px;
       height: 190px;
-      width: 99%;
+      width: 98%;
       background: rgb(0,0,0);
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 76%);
     }
@@ -435,7 +523,27 @@ trix-toolbar .trix-button-group--file-tools {
 
 }
 
+.gallery-show{
+  text-align: center;
 
+  .gallery-title{
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .contributor{
+    font-family: 'Caveat', cursive;
+  }
+
+  .description-container{
+    text-align: left;
+    .trix-content{
+      font-family: 'Karma', serif;
+      line-height: 20px;
+      font-size: 16px;
+    }    
+  }
+
+}
 
 
 
