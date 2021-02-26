@@ -43,7 +43,8 @@
         <%= image_tag(attachment.photo, class: 'attachment-edit-photo') if attachment.photo.attached? %>
         <%= form.hidden_field :attachment_ids, name: 'gallery[existing_attachments][][id]', :multiple => true, :value => attachment.id, id: "attachment-id-#{attachment.id}" %>
         <%= form.text_field :attachment_caption, class: 'attachment-edit-caption', name: 'gallery[existing_attachments][][caption]', id: "caption-#{attachment.id}", multiple: true, data: {attachment_id: attachment.id }, :value => attachment.caption, placeholder: "Enter a caption here...", id: "attachment-caption-#{attachment.id}" %>
-        <i class="fas fa-trash" id='delete-attachment-<%= attachment.id %>'></i>
+        <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/attachments/<%= attachment.id %>"><i class="fas fa-trash" id='delete-attachment-<%= attachment.id %>'></i></a>
+        
       </div>
       
     <% end %>    
