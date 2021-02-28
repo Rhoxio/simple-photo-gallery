@@ -19,12 +19,12 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, required: true %>
   </div>  
 
   <div class="field">
     <%= form.label :message %>
-    <%= form.rich_text_area :description %>
+    <%= form.rich_text_area :description, required: true %>
   </div>
 
   <div class='separator'></div>

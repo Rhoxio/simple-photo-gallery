@@ -47,12 +47,14 @@ class GalleriesController < InheritedResources::Base
     attachment_params = params[:gallery].delete(:attachments)
     gallery = Gallery.create!(gallery_params)
 
-    attachments = attachment_params[:photo].map do |photo|
-      Attachment.create!(photo: photo)
+    if attachment_params
+      attachments = attachment_params[:photo].map do |photo|
+        Attachment.create!(photo: photo)
+      end
+      gallery.attachments << attachments
+      gallery.save!      
     end
-
-    gallery.attachments << attachments
-    gallery.save!
+    
     redirect_to(gallery)
   end
 
